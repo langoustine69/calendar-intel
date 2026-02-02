@@ -57,7 +57,7 @@ addEntrypoint({
   key: 'overview',
   description: 'Free overview - today\'s calendar info and upcoming US holidays',
   input: z.object({}),
-  price: "0",
+  price: undefined,
   handler: async () => {
     const today = new Date();
     const year = today.getFullYear();
@@ -378,7 +378,7 @@ addEntrypoint({
   input: z.object({
     windowMs: z.number().optional().describe('Time window in ms')
   }),
-  price: "0",
+  price: undefined,
   handler: async (ctx) => {
     const tracker = agent.analytics?.paymentTracker;
     if (!tracker) {
@@ -403,7 +403,7 @@ addEntrypoint({
     windowMs: z.number().optional(),
     limit: z.number().optional().default(50)
   }),
-  price: "0",
+  price: undefined,
   handler: async (ctx) => {
     const tracker = agent.analytics?.paymentTracker;
     if (!tracker) {
