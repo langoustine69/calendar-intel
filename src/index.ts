@@ -57,7 +57,7 @@ addEntrypoint({
   key: 'overview',
   description: 'Free overview - today\'s calendar info and upcoming US holidays',
   input: z.object({}),
-  price: undefined,
+  price: "0.0001",
   handler: async () => {
     const today = new Date();
     const year = today.getFullYear();
@@ -102,7 +102,7 @@ addEntrypoint({
     year: z.number().optional().describe('Year (default: current year)'),
     type: z.enum(['all', 'public', 'bank']).optional().default('all').describe('Filter by holiday type')
   }),
-  price: "1000",
+  price: "0.001",
   handler: async (ctx) => {
     const year = ctx.input.year || new Date().getFullYear();
     const country = ctx.input.country.toUpperCase();
@@ -144,7 +144,7 @@ addEntrypoint({
     day: z.number().min(1).max(31).describe('Day of month'),
     limit: z.number().optional().default(10).describe('Max events to return')
   }),
-  price: "1000",
+  price: "0.001",
   handler: async (ctx) => {
     const { month, day, limit } = ctx.input;
     const paddedMonth = String(month).padStart(2, '0');
@@ -182,7 +182,7 @@ addEntrypoint({
   input: z.object({
     date: z.string().optional().describe('Date in YYYY-MM-DD format (default: today)')
   }),
-  price: "1000",
+  price: "0.001",
   handler: async (ctx) => {
     const date = ctx.input.date ? new Date(ctx.input.date) : new Date();
     
@@ -226,7 +226,7 @@ addEntrypoint({
     endDate: z.string().describe('End date in YYYY-MM-DD format'),
     country: z.string().length(2).optional().default('US').describe('Country code for holidays')
   }),
-  price: "2000",
+  price: "0.002",
   handler: async (ctx) => {
     const start = new Date(ctx.input.startDate);
     const end = new Date(ctx.input.endDate);
@@ -293,7 +293,7 @@ addEntrypoint({
     endDate: z.string().describe('End date in YYYY-MM-DD format'),
     country: z.string().length(2).optional().default('US').describe('Country code')
   }),
-  price: "3000",
+  price: "0.003",
   handler: async (ctx) => {
     const start = new Date(ctx.input.startDate);
     const end = new Date(ctx.input.endDate);
@@ -378,7 +378,7 @@ addEntrypoint({
   input: z.object({
     windowMs: z.number().optional().describe('Time window in ms')
   }),
-  price: undefined,
+  price: "0.0001",
   handler: async (ctx) => {
     const tracker = agent.analytics?.paymentTracker;
     if (!tracker) {
@@ -403,7 +403,7 @@ addEntrypoint({
     windowMs: z.number().optional(),
     limit: z.number().optional().default(50)
   }),
-  price: undefined,
+  price: "0.0001",
   handler: async (ctx) => {
     const tracker = agent.analytics?.paymentTracker;
     if (!tracker) {
